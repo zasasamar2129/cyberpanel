@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cyber Telegram Bot Admin Panel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      /* Custom Cyber Cursors */
+      .cyber-cursor {
+        cursor: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4L28 16L16 20L12 28L4 4Z" stroke="%2300f6ff" stroke-width="1.5" fill="%2300f6ff" fill-opacity="0.2" stroke-linejoin="round"/></svg>'), auto;
+      }
+      .cyber-cursor button, 
+      .cyber-cursor a, 
+      .cyber-cursor [role="button"], 
+      .cyber-cursor input[type="submit"], 
+      .cyber-cursor select,
+      .cyber-cursor input[type="file"] + button {
+        cursor: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 27L4 21V5L15 16H23.5L10 27Z" stroke="%23faff00" stroke-width="2" fill="%23faff00" fill-opacity="0.3" stroke-linejoin="round"/></svg>'), pointer;
+      }
+
+      /* Animated Grid Background for Public Page */
+      .animated-grid-bg {
+        position: relative;
+        overflow: hidden;
+      }
+      .animated-grid-bg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+          linear-gradient(to right, rgba(0, 246, 255, 0.15) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(0, 246, 255, 0.15) 1px, transparent 1px);
+        background-size: 40px 40px;
+        animation: pan-grid 20s linear infinite;
+        z-index: 0;
+      }
+
+      @keyframes pan-grid {
+        0% { background-position: 0 0; }
+        100% { background-position: 40px 40px; }
+      }
+      
+      @keyframes blink {
+        0%, 90%, 100% {
+          transform: scaleY(1);
+          transform-origin: center;
+        }
+        95% {
+          transform: scaleY(0.05);
+          transform-origin: center;
+        }
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              'sans': ['Share Tech Mono', 'monospace'],
+              'display': ['Orbitron', 'sans-serif'],
+            },
+            colors: {
+              // Dark Mode: Cyberpunk
+              'cyber-bg': '#0a0a1a',
+              'cyber-surface': '#14142b',
+              'cyber-primary': '#00f6ff',
+              'cyber-secondary': '#ff00ff',
+              'cyber-accent': '#faff00',
+              'cyber-border': 'rgba(0, 246, 255, 0.3)',
+
+              // Light Mode: Clean & Professional
+              'light-bg': '#f1f5f9', // slate-100
+              'light-surface': '#ffffff',
+              'light-primary': '#4f46e5', // indigo-600
+              'light-secondary': '#d946ef', // fuchsia-500
+              'light-text-primary': '#1e293b', // slate-800
+              'light-text-secondary': '#64748b', // slate-500
+              'light-border': '#e2e8f0', // slate-200
+            },
+            boxShadow: {
+              'cyber-glow': '0 0 5px #00f6ff, 0 0 10px #00f6ff, 0 0 15px #00f6ff',
+              'cyber-glow-secondary': '0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff',
+              'cyber-panel': 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 0 15px rgba(0, 246, 255, 0.2)',
+              'light-panel': '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+            },
+            keyframes: {
+              'flicker': {
+                '0%, 100%': { opacity: 1 },
+                '50%': { opacity: 0.8 },
+              },
+              'slide-in': {
+                '0%': { transform: 'translateX(-100%)', opacity: 0 },
+                '100%': { transform: 'translateX(0)', opacity: 1 },
+              },
+              'fade-in': {
+                '0%': { opacity: 0 },
+                '100%': { opacity: 1 },
+              }
+            },
+            animation: {
+              'flicker': 'flicker 1.5s infinite',
+              'slide-in': 'slide-in 0.5s ease-out forwards',
+              'fade-in': 'fade-in 0.5s ease-out forwards',
+            }
+          },
+        },
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "recharts": "https://aistudiocdn.com/recharts@^3.4.1",
+    "@faker-js/faker": "https://aistudiocdn.com/@faker-js/faker@^10.1.0"
+  }
+}
+</script>
+</head>
+  <body class="bg-light-bg dark:bg-cyber-bg font-sans text-light-text-primary dark:text-gray-200 cyber-cursor">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
